@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+#pointer-dot { left: 0; top: 0; width: 0; height: 0; background: #000; position: fixed; border-radius: 4px; z-index: 101; pointer-events: none; transition: border-color 0.5s; }
+#pointer-ring { left: 0; top: 0; width: 0; height: 0; padding: 15px; border: 1px solid #000; position: fixed; border-radius: 100px; z-index: 102; pointer-events: none; background: #fff; mix-blend-mode: difference; }
+
+html { cursor: none !important; }
+a { cursor: none !important; }
+body {width: 100%; font-family: 'LINESeedKR-Rg'; overflow-x: hidden; transition: all .5s; text-transform: uppercase; background: #000; color: #fff;}
+header, footer, .date, .place, .participant, .days {mix-blend-mode: difference;}
+header {height: 80vh; margin: 0 2rem; padding: 2rem 0; }
+h1 {font-size: 7.5vw; }
+hr { height: 2px; background: #fff;  border: none;}
+.date, .place  {margin: 2rem 0; display: flex; justify-content: space-between; font-size: 3rem; align-items: center;}
+.date div:nth-child(3) {display: flex; align-items: center;}
+.date div hr {width:20rem; margin: 1rem;}
+
+.participant {margin: 2rem; display: flex; flex-wrap: wrap;  line-height: 1.5;}
+.participant p {margin-right: 1rem;}
+.participant p span {color: #ffffff30;}
+
+.days {margin: 2rem 2rem 4rem 2rem; display: flex; flex-wrap: wrap;  line-height: 1.5;}
+.days h2 {display: flex; justify-content: space-between; font-size: 3rem; width: 100%; align-items: center; position: sticky; top: 2rem;}
+.days h2 hr {margin: 1rem; flex-basis: auto; width: 100%;}
+.days dl {display: flex; padding: 2rem 0; width: 100%; border-bottom: 1px solid #ffffff30;}
+.days dl:nth-of-type(1) {padding: 1rem 0 2rem 0;}
+.days dl dt {flex-shrink: 0; width: 20%;}
+.days dl dd {flex-grow: 1;}
+
+footer { margin: 0 2rem ;  padding: 0 0 2rem 0; font-size: 0.75rem;}
+
+.contents {background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0) 100%);}
+
+#introImg {position: fixed; right: 0; bottom: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; overflow: hidden;}
+
+/*---------- Responsive----------*/
+@media screen and (max-width: 768px) {
+  .date, .place { margin: .5rem 0;  font-size: 1.5rem;}
+  .date div hr {width:4rem; margin: 0.5rem;}
+  .days h2 {font-size: 1.5rem; }
+  .days dl { display: block; padding: 1rem 0;}
+  .days dl dt {width: 100%;}
+}
