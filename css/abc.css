@@ -33,9 +33,6 @@ hr { height: 2px; background: #fff;  border: none;}
 
 footer { margin: 0 2rem ;  padding: 0 0 2rem 0; font-size: 0.75rem;}
 
-/* .contents {background: rgb(0,0,0); background: linear-gradient(0deg, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0) 100%);} */
-
-
 #introImg {position: fixed; right: 0; bottom: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; overflow: hidden;}
 
 /*---------- Responsive----------*/
