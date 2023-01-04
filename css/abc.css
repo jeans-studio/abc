@@ -39,7 +39,7 @@ footer { margin: 0 2rem ;  padding: 0 0 2rem 0; font-size: 0.75rem;}
 
 /*---------- Responsive----------*/
 @media screen and (max-width: 768px) {
-   header {height: 60vh; }
+   header {height: 50vh; }
   .date, .place { margin: .5rem 0;  font-size: 1.5rem;}
   .date div hr {width:4rem; margin: 0.5rem;}
   .days h2 {font-size: 1.5rem; }
