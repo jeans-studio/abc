@@ -1,0 +1,88 @@
+::selection {background:#fff; color:000 ;}
+
+@font-face {
+  font-family: 'GeneralSans-Variable';
+  src: url('../fonts/GeneralSans-Variable.woff2') format('woff2'),
+       url('../fonts/GeneralSans-Variable.woff') format('woff'),
+       url('../fonts/GeneralSans-Variable.ttf') format('truetype');
+       font-weight: 200 700;
+       font-display: swap;
+       font-style: normal;
+}
+
+.preloader {position: fixed; top:0; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: #fff; z-index: 10000;}
+.preloader.active {transform: translateY(-100vh); transition: ease-in-out 1s; }
+.counter {position: relative; color: #000; font-size: 12vw; z-index: 1;}
+.hide {opacity: 0; transition: 1s; pointer-events: none;}
+
+#pointer-dot { left: 0; top: 0; width: 0; height: 0; background: #000; position: fixed; border-radius: 4px; z-index: 101; pointer-events: none; transition: border-color 0.5s; }
+#pointer-ring { left: 0; top: 0; width: 0; height: 0; padding: 15px; border: 1px solid #000; position: fixed; border-radius: 100px; z-index: 102; pointer-events: none; background: #fff; mix-blend-mode: difference; }
+
+html { cursor: none !important; }
+a { cursor: none !important; }
+
+body {width: 100%; font-family: 'GeneralSans-Variable'; overflow-x: hidden; transition: all .5s;}
+
+header, footer, a, #about, #team, #recruit {mix-blend-mode: difference; color: #fff;}
+
+header {width: calc(100% - 4rem); margin: 0 2rem; padding: 2rem 0; border-bottom: 1px solid #fff; position: fixed; top:0;}
+header h1 {font-size: 2rem;}
+
+section {margin: 2rem 0; padding: 0 2rem; }
+.hr {width: calc(100% - 4rem); margin: 4rem 2rem; height: 1px; background: #000;}
+
+
+#about {margin: 8rem 0 0 0; }
+#about h2 {font-size: 12vw; margin: 0 0 1rem 0; font-weight: 400;  }
+#about h2 span { transition: color 1s; transition-delay: .5s; }
+#about h2 span:hover { transition: color 0s; }
+#about h2 span:nth-child(1n):hover { color: #cd28b4; }
+#about h2 span:nth-child(2n):hover { color: #cd2863; }
+#about h2 span:nth-child(3n):hover { color: #4928cd; }
+#about p {width: 50%; font-size: 1.5rem; line-height: 1.5; margin: 0 0 0 50%;}
+
+#team {}
+#team h2 {font-size: 2rem;}
+#team article {padding: 2rem 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem;}
+#team article div {}
+#team article div h3 {font-size: 3rem; font-weight: 300;}
+#team article div h4 {font-size: 1rem; margin: 1rem 0; font-weight: 500;}
+#team article div ul {line-height: 1.5; filter: invert(1);}
+#team article div .social {display: flex;}
+#team article div .social li {margin: 0 .5rem 0 0;}
+#team article div .social li img {width: 1.2rem; height: 1.2rem; }
+
+#recruit {margin: 0 0 8rem 0;}
+#recruit h2 {font-size: 2rem; }
+#recruit ul {padding: 2rem 0; display: grid; gap: 2rem;}
+#recruit ul li a {}
+#recruit ul li a h3 {font-size: 3rem; font-weight: 300;}
+#recruit ul li a h3:hover {color: #cd28b4; transition: all .25s;}
+#recruit ul li a p {font-size: 1rem; margin: 1rem 0; font-weight: 500;}
+
+footer {width: calc(100% - 4rem); margin: 0 2rem;  padding: 2rem 0; border-top: 1px solid #fff; position: fixed; bottom: 0;}
+
+video {position: fixed; right: 0; bottom: 0; min-width: 100vw; min-height: 100vh; z-index: -1; overflow: hidden}
+
+
+/*---------- System Dark Mode ----------*/
+/* @media (prefers-color-scheme: dark) {
+  video {filter: invert(1);}
+  .hr {background: #fff;}
+  #about h2 span:nth-child(1n):hover { color: #28cd41; }
+  #about h2 span:nth-child(2n):hover { color: #28cd92; }
+  #about h2 span:nth-child(3n):hover { color: #abcd28; }
+  #recruit ul li a h3:hover {color: #28cd41; transition: all .25s;}
+} */
+
+/*---------- Responsive----------*/
+@media screen and (max-width: 1024px) {
+  header h1 {font-size: 1rem;}
+  #about {width: 100%;}
+  #about p {width: 100%; margin: 0; font-size: 1rem;}
+  #team h2 {font-size: 1.5rem;}
+  #team article {padding: 2rem 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;}
+  #team article div h3 {font-size: 2rem; font-weight: 300;}
+  #recruit h2 {font-size: 1.5rem; }
+  #recruit ul li a h3 {font-size: 2rem; font-weight: 300;}
+}
