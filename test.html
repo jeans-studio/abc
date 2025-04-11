@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<h1>ご予算 </h1>
+<input type="text" maxlength="10" onkeyup="inputNumberFormat(this);" placeholder="1,500" />, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ご予算 </h1>
+    <input type="text" maxlength="10" onkeyup="inputNumberFormat(this);" placeholder="1,500" /> 
+    <script>
+          /* input */
+  
+  function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
+
+    function uncomma(str) {
+        str = String(str);
+        return str.replace(/[^\d]+/g, '');
+    } 
+    
+    function inputNumberFormat(obj) {
+        obj.value = comma(uncomma(obj.value));
+    }
+    
+    function inputOnlyNumberFormat(obj) {
+        obj.value = onlynumber(uncomma(obj.value));
+    }
+    
+    function onlynumber(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+	}
+
+/* 영역 안 가격 */
+  
+var money = $('#money').text();
+var money2 = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+$('#money').text(money2);
+    </script>
+</body>
+</html>
