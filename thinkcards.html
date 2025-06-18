@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>ABC Design<br>Think Cards</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif; 
+            background-color: #111;
+            word-break: keep-all;
+        }
+        h1{
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .wrapper{
+            width: 100%;
+            margin: 4rem auto;
+            max-width: 80rem;
+        }
+
+        .cols{
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+        }
+
+        .col{
+            width: calc(25% - 2rem);
+            margin: 1rem;
+            cursor: pointer;
+        }
+
+        .container{
+            -webkit-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+                -webkit-perspective: 1000px;
+                        perspective: 1000px;
+        }
+
+        .front,
+        .back{
+            background-size: cover;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.25);
+            border-radius: 1rem;
+                background-position: center;
+                -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+                transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+                -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+                transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+                transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+                -webkit-backface-visibility: hidden;
+                        backface-visibility: hidden;
+                min-height: 280px;
+                height: auto;
+                border-radius: 1rem;
+                color: #fff;
+                font-size: 1.5rem;
+        }
+
+        .back{
+            background: #000000;
+            background: -webkit-linear-gradient(45deg,   #191919 0%,#2d2d2e 100%);
+            background: -o-linear-gradient(45deg,   #191919 0%,#2d2d2e 100%);
+            background: linear-gradient(45deg,  #191919 0%,#2d2d2e 100%);
+        }
+
+        .front:after{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            content: '';
+            display: block;
+            opacity: .6;
+            background-color: #000;
+            -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
+            border-radius: 1rem;
+        }
+        .container:hover .front,
+        .container:hover .back{
+            -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+        }
+
+        .back{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .inner{
+            -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
+                    transform: translateY(-50%) translateZ(60px) scale(0.94);
+            top: 50%;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 1.25rem;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+            outline: 1px solid transparent;
+            -webkit-perspective: inherit;
+                    perspective: inherit;
+            z-index: 2;
+        }
+
+        .back .inner p{
+            font-size: 1rem;
+            position: relative;
+            color: #ffffff3d;
+            margin: 0 0 0.5rem 0;
+        }
+
+
+        .back .inner span{
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .container .back{
+            -webkit-transform: rotateY(180deg);
+                    transform: rotateY(180deg);
+            -webkit-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+        }
+
+        .container .front{
+            -webkit-transform: rotateY(0deg);
+                    transform: rotateY(0deg);
+            -webkit-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+        }
+
+        .container:hover .back{
+        -webkit-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+        -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+        }
+
+        .container:hover .front{
+        -webkit-transform: rotateY(-180deg);
+                transform: rotateY(-180deg);
+        -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+        }
+
+        .front .inner p{
+            font-size: 1rem;
+            position: relative;
+            color: #ffffff3d;
+            margin: 0 0 0.5rem 0;
+        }
+
+
+        .front .inner span{
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .front .inner ul {
+            font-size: 0.75rem;
+            padding-inline-start: 1.5em;
+            margin: 0.5rem 0;;
+            color:#ffffffb3;
+        }
+
+        .front .inner li {
+            margin: 0 0 0.25rem 0;;
+        }
+
+
+        @media screen and (max-width: 64rem){
+        .col{
+            width: calc(33.333333% - 2rem);
+        }
+        }
+
+        @media screen and (max-width: 48rem){
+        .col{
+            width: calc(50% - 2rem);
+        }
+        }
+
+        @media screen and (max-width: 32rem){
+        .col{
+            width: 100%;
+            margin: 0 0 2rem 0;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>ABC Design Think Cards</h1>
+        <div class="cols">
+                  <div class="col" ontouchstart="this.classList.toggle('hover');">
+                      <div class="container">
+                          <div class="front" style="background-image: url(https://images.unsplash.com/photo-1713341516616-12ab673d4ea5?q=80&w=3028&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                              <div class="inner">
+                                  <p>01</p>
+                                    <span>좋은 디자인이란 무엇인가?</span>
+                                    <ul>
+                                        <li>좋은 디자인은 결국 ‘기능’일까, ‘감성’일까?</li>
+                                        <li>디자인에 윤리는 어디까지 개입해야 할까?</li>
+                                        <li>우리는 ‘사용자 중심’이라는 말을 얼마나 진지하게 생각하고 있을까?</li>
+                                        <li>디자인은 결국 ‘소통’인가, ‘설득’인가?</li>
+                                        <li>브랜딩과 UX는 충돌할 수 있을까?</li>
+                                    </ul>
+                              </div>
+                          </div>
+                          <div class="back">
+                              <div class="inner">
+                                <p>토론 포인트</p>
+                                <span>각자가 생각하는 “좋은 디자인” 사례를 공유해보자.</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1651352076676-58a34812f3d2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>02</p>
+                                  <span>사용자 경험 vs 시각적 완성도</span>
+                                  <ul>
+                                      <li>사용자가 불편함을 느끼지 못하는 디자인은 정말 좋은 디자인일까?</li>
+                                      <li>시각적 일관성과 실용성 중 어느 쪽이 더 중요한가?</li>
+                                      <li>복잡한 기능을 단순하게 보여주는 것과 단순한 기능을 과장하지 않는 것 중 뭐가 더 어려울까?</li>
+                                      <li>잘 만든 기능보다 잘 보이는 버튼이 이기는 세상, 괜찮을까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>우리 서비스에서 실제로 겪었던 UX/UI 간 갈등 경험을 나눠보자.</span>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1672009190560-12e7bade8d09?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>03</p>
+                                  <span>디자이너의 정체성과 주체성</span>
+                                  <ul>
+                                      <li>디자이너는 얼마나 주체적이어야 할까?</li>
+                                      <li>디자인에 ‘작가성’은 필요한가?</li>
+                                      <li>‘정답이 없는 디자인’에 기준은 있을까?</li>
+                                      <li>디자이너로서 나의 가치는 어디에 있다고 느끼는가?</li>
+                                      <li>나는 어떤 디자이너가 되고 싶은가?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>나만의 디자인 철학 한 문장으로 표현해보기</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1667287660813-668f9f7700b9?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>04</p>
+                                  <span>피드백과 협업</span>
+                                  <ul>
+                                      <li>피드백은 어디까지 수용하고 어디서부터 지켜야 할까?</li>
+                                      <li>디자인은 누구의 것을 먼저 들어야 할까?</li>
+                                      <li>디자이너는 왜 PM과 충돌할까?</li>
+                                      <li>좋은 동료란 어떤 사람일까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>내가 가장 존경하는 동료는 어떤 스타일이었는지 이야기해보기</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1659540023819-ffcf9389bc48?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>05</p>
+                                  <span>디자인 시스템 vs 창의성</span>
+                                  <ul>
+                                      <li>디자인 시스템이 너무 강해지면 창의성이 억제되지 않을까?</li>
+                                      <li>퍼소나 중심의 디자인은 여전히 유효한가?</li>
+                                      <li>디자인은 ‘취향’일까, ‘논리’일까?</li>
+                                      <li>미니멀리즘이 항상 좋은 접근일까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>우리 디자인 시스템이 지나치게 고정적이진 않은지 돌아보기</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1695569292033-95db9ad99cf8?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>06</p>
+                                  <span>다크 패턴과 윤리</span>
+                                  <ul>
+                                      <li>사용자가 모르게 ‘조작’하는 디자인은 잘못일까?</li>
+                                      <li>디자이너가 AI를 학습시키는 역할을 맡는다면, 어떤 책임이 생길까?</li>
+                                      <li>앞으로 디자인 윤리는 AI 중심으로 재정의되어야 할까?</li>
+                                      <li>AI는 편향된 데이터를 기반으로 할 가능성이 있다. 이를 어떻게 방지할 수 있을까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>우리 서비스에 윤리적 고민이 필요한 영역은 무엇인지 찾아보기</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1658965766600-baad7be330f0?q=80&w=3028&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>07</p>
+                                  <span>AI와 창의성</span>
+                                  <ul>
+                                      <li>생성형 AI는 디자이너의 창의성을 대체할 수 있을까?</li>
+                                      <li>우리가 AI에 기대하는 창의성은 진짜 창의성일까?</li>
+                                      <li>인간 디자이너는 어떤 점에서 AI보다 뛰어날까?</li>
+                                      <li>AI가 만든 디자인에 디자이너의 저작권은 어떻게 주장할 수 있을까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>AI와 협업해본 경험이 있다면, 그때 느꼈던 감정을 공유해보자</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1741888181508-851b1283ed8e?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>08</p>
+                                  <span>AI 도구와 협업</span>
+                                  <ul>
+                                      <li>디자이너가 AI를 잘 다루는 능력은 앞으로 얼마나 중요해질까?</li>
+                                      <li>AI와 협업하는 디자이너의 스킬셋은 무엇이 되어야 할까?</li>
+                                      <li>AI 도구가 점점 많아지면, 디자이너는 어디에 집중해야 할까?</li>
+                                      <li>생성형 AI 도구를 사용한 포트폴리오는 어떻게 구성되어야 할까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>나만의 AI 활용 팁 공유하기</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1735822081075-2afd7a7e7ba1?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>09</p>
+                                  <span>AI 판단과 신뢰</span>
+                                  <ul>
+                                      <li>AI가 ‘좋은’ 디자인을 판단할 수 있을까?</li>
+                                      <li>AI의 판단은 설명할 수 없을 때가 많다. 그런 디자인을 신뢰할 수 있을까?</li>
+                                      <li>생성형 AI의 윤리적 사용을 위해 우리가 정해야 할 가이드라인이 있다면?</li>
+                                      <li>AI가 만든 아웃풋에 디자이너의 책임은 어디까지일까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>인간의 직관과 AI의 분석, 어느 쪽을 더 신뢰하나요?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1700587085877-733fe66eef0e?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>10</p>
+                                  <span>프로덕트 디자인의 본질</span>
+                                  <ul>
+                                      <li>MVP는 ‘최소 기능 제품’일까, ‘최소 감동 제품’일까?</li>
+                                      <li>UX 리서치 없이 제품을 만드는 건 도박일까, 현실일까?</li>
+                                      <li>좋은 프로덕트는 문제를 해결하는가, 습관을 만드는가?</li>
+                                      <li>성공적인 서비스의 디자인은 결국 ‘불편함’을 얼마나 줄이느냐인가?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>우리 제품에서 가장 큰 ‘불편함 제거 사례’를 공유해보자</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1698248152617-55c4b9422b71?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>11</p>
+                                  <span>기능, 속도, 복잡성</span>
+                                  <ul>
+                                      <li>기능이 많을수록 좋은가, 적을수록 좋은가?</li>
+                                      <li>디자인은 얼마나 ‘빠르게’ 진화해야 할까?</li>
+                                      <li>서비스가 복잡해질수록 UI는 단순해질 수 있을까?</li>
+                                      <li>빠른 개선이 좋은 UX일까, 예측 가능한 UX가 좋은 UX일까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>우리 제품에서 너무 많은 기능 때문에 혼란을 겪은 사례는?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1696053537774-159017f91349?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>12</p>
+                                  <span>데이터 vs 직관</span>
+                                  <ul>
+                                      <li>A/B 테스트는 과연 진리를 말해주는가?</li>
+                                      <li>디자인도 데이터 기반이 되어야 하나? 감각의 영역은 사라지는 걸까?</li>
+                                      <li>AI는 직관을 배울 수 있을까?</li>
+                                      <li>유저의 요구는 항상 ‘진짜 요구’일까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>데이터와 직관이 충돌했던 순간을 공유해보자</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1678971916523-0fe8cd6fc252?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>13</p>
+                                  <span>고객 vs 사용자 중심</span>
+                                  <ul>
+                                      <li>디자인 팀의 전략은 언제부터 비즈니스에 영향을 줄까?</li>
+                                      <li>사용자 피드백을 너무 많이 반영하면 제품의 철학이 사라지진 않을까?</li>
+                                      <li>고객과 유저가 다를 때 디자인팀은 누구를 기준으로 삼아야 할까?</li>
+                                      <li>표준화와 차별화 사이에서 디자이너는 어떻게 중심을 잡아야 할까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>고객의 요구와 사용자의 경험이 충돌했던 사례는?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1658579126739-03385cb1749b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>14</p>
+                                  <span>나를 돌아보는 디자인 성찰</span>
+                                  <ul>
+                                      <li>우리는 왜 디자인을 하기로 했을까?</li>
+                                      <li>내가 가장 열정을 느끼는 디자인 영역은 무엇인가?</li>
+                                      <li>내가 진심으로 싫어하는 디자인은 어떤 것인가?</li>
+                                      <li>나는 어떤 피드백에 민감한가?</li>
+                                      <li>지금 내게 가장 필요한 능력은 무엇인가?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>내가 디자이너로 성장한 계기를 나눠보자</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1741943092501-f892ec133a2c?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>15</p>
+                                  <span>감정, 자존감, 성장</span>
+                                  <ul>
+                                      <li>내가 가장 성장했다고 느낀 순간은 언제였는가?</li>
+                                      <li>나는 내 일에 자부심을 느끼는가?</li>
+                                      <li>나는 실수를 어떻게 받아들이는가?</li>
+                                      <li>지금 이 순간, 나는 왜 지쳤을까?</li>
+                                      <li>내가 두려워하는 일은 무엇인가?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>최근 ‘힘들었다’고 느꼈던 순간을 나누고 서로 공감해보자</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1737365505446-3a7519af3bee?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>16</p>
+                                  <span>창의성과 영감</span>
+                                  <ul>
+                                      <li>나는 ‘창의성’을 어떻게 정의하는가?</li>
+                                      <li>무의식적으로 따라 하는 트렌드는 없는가?</li>
+                                      <li>나는 디자인 외에 어떤 활동에서 영감을 받는가?</li>
+                                      <li>디자인은 진짜로 세상을 바꿀 수 있을까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>최근에 받은 ‘비디자인적’ 영감은 무엇이었는가?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1740568439805-b610a1115fc3?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>17</p>
+                                  <span>문화와 지역성</span>
+                                  <ul>
+                                      <li>일본의 고유한 미의식은 UX에 어떻게 녹여낼 수 있을까?</li>
+                                      <li>사람들의 식생활 변화는 어떤 UI 변화로 이어질 수 있을까?</li>
+                                      <li>일본 사회에서 ‘기다림’은 UX에 어떤 영향을 줄까?</li>
+                                      <li>지역성은 Demaecan 서비스에 어떤 가치를 더해줄까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>디자인에서 일본다움이란 어떤 모습일까?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1700056397353-d64ad7119a07?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>18</p>
+                                  <span>배달 서비스와 UX의 미래</span>
+                                  <ul>
+                                      <li>배달 음식 서비스의 미래는 어떤 방향으로 갈까?</li>
+                                      <li>배달이라는 행위는 앞으로도 ‘사람’ 중심일까, ‘로봇’ 중심일까?</li>
+                                      <li>지역 음식점과 대형 플랫폼 사이의 디자인 책임은 어디에 있을까?</li>
+                                      <li>배달 라이더의 UX란 어떤 방식으로 디자인될 수 있을까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>사용자뿐 아니라 라이더의 UX는 어떻게 고려해야 할까?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1716643406202-f3a5f212f827?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>19</p>
+                                  <span>기술 vs 인간 중심</span>
+                                  <ul>
+                                      <li>기술이 너무 앞서가면, UX는 따라갈 수 있을까?</li>
+                                      <li>‘비인간적인 서비스’가 더 효율적이라면 받아들여야 할까?</li>
+                                      <li>사람들은 왜 ‘추천’ 기능을 신뢰할까?</li>
+                                      <li>음식 배달 서비스에서 ‘신뢰’는 디자인으로 표현될 수 있을까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>기술이 인간다움을 침해하지 않게 하는 디자인은?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                    <div class="container">
+                        <div class="front" style="background-image: url(https://images.unsplash.com/photo-1743774106258-3ea79bb02fcf?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                            <div class="inner">
+                                <p>20</p>
+                                  <span>사회적 책임과 디자인의 미래</span>
+                                  <ul>
+                                      <li>Demaecan이 사회적 책임을 디자인으로 표현할 수 있는 방법은?</li>
+                                      <li>지속 가능한 디자인이란 진짜로 가능할까?</li>
+                                      <li>프라이버시와 편의성 사이에서 사용자는 어디까지를 용인할까?</li>
+                                      <li>우리는 어떤 미래를 위한 디자인을 하고 있는 걸까?</li>
+                                  </ul>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="inner">
+                              <p>토론 포인트</p>
+                              <span>우리 팀이 지금 만드는 디자인이 사회에 기여하는 부분은?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+       </div>
+    
+    <script>
+    </script>
+</body>
+</html>
